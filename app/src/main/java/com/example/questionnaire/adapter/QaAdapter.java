@@ -1,12 +1,15 @@
 package com.example.questionnaire.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.questionnaire.R;
@@ -39,6 +42,12 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
         holder.tvQuestion.setText(Jsoup.parse(qa.getQuestion()).text());
         holder.tvAnswer.setText(qa.getAnswer());
         holder.tvCorrectAnswer.setText(qa.getCorrect_answer());
+        if (qa.getAnswer().equals(qa.getCorrect_answer())) {
+            holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Correct));
+
+        } else {
+            holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Wrong));
+        }
     }
 
     @Override
@@ -49,12 +58,14 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
     public class QaViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvQuestion, tvAnswer, tvCorrectAnswer;
+        RelativeLayout rlQaIsCorrect;
 
         public QaViewHolder(@NonNull View itemView) {
             super(itemView);
             tvQuestion = itemView.findViewById(R.id.tvqaquestion);
             tvAnswer = itemView.findViewById(R.id.tvqaanswerans);
             tvCorrectAnswer = itemView.findViewById(R.id.tvqacorrectanswerans);
+            rlQaIsCorrect = itemView.findViewById(R.id.relativelayoutiscorrect);
         }
     }
 

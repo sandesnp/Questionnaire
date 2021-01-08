@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,10 +46,9 @@ public class fragmentDashboard extends Fragment {
             if (setResponse.isSuccessful()) {
                 ArrayList<data> questiondataset= setResponse.body().getData();
                 FragmentManager fm= getActivity().getSupportFragmentManager();
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
                 RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), questiondataset, fm, "questionset", null);
                 recyclerView.setAdapter(recyclerAdapter);
-                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             }
         } catch (Exception e) {
             e.printStackTrace();

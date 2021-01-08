@@ -22,6 +22,7 @@ import com.example.questionnaire.models.attempt;
 import com.example.questionnaire.models.data;
 import com.example.questionnaire.models.objectives;
 import com.example.questionnaire.models.questions;
+import com.google.android.material.button.MaterialButton;
 
 import org.jsoup.Jsoup;
 
@@ -67,7 +68,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             case "questionset":
                 data questiondataset = listQuestion.get(position);
                 holder.questions.setText(questiondataset.getName());
-                holder.layout_question.setOnClickListener(new View.OnClickListener() {
+                holder.questions.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         fragmentQuestion fragmentQuestion = new fragmentQuestion();
@@ -147,15 +148,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        public TextView questions;
-        public LinearLayout layout_question;
+        public MaterialButton questions;
         public RadioButton R_answerA, R_answerB, R_answerC, R_answerD;
         public TextView tvthequestion;
         public RadioGroup rganswer;
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             questions = itemView.findViewById(R.id.tv_questions);
-            layout_question = itemView.findViewById(R.id.layout_question);
             R_answerA = itemView.findViewById(R.id.rbanswerA);
             R_answerB = itemView.findViewById(R.id.rbanswerB);
             R_answerC = itemView.findViewById(R.id.rbanswerC);

@@ -66,6 +66,8 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result, container, false);
+
+        //width: 1103 | height: 1138
         int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
         int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
         getDialog().getWindow().setLayout(width, height);

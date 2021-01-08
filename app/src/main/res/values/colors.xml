@@ -12,7 +12,8 @@
     <color name="gray">#B8B4B4</color>
 
 
-
+    <color name="Wrong">#EC8F8F</color>
+    <color name="Correct">#5BA5F4</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorPrimary">#6200EE</color>
 </resources>
