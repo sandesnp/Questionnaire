@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="checkoutFragmentXY" parent="android:Theme.Holo.Dialog" >
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">#ffffff</item>
+    </style>
+</resources>

@@ -7,4 +7,5 @@
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <string name="default_question"><u>Default_Question_A</u></string>
+    <string name="default_Answer"><u>Correct Answers</u></string>
 </resources>

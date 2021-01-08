@@ -3,6 +3,7 @@ package com.example.questionnaire.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +34,8 @@ public class fragmentDashboard extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        global.questions.clear();
+        global.attempt.clear();
         recyclerView = view.findViewById(R.id.recycler_view_question);
 
         httpRequests httpRequests = global.getInstance().create(httpRequests.class);
@@ -41,8 +44,9 @@ public class fragmentDashboard extends Fragment {
             Response<set> setResponse = setCall.execute();
             if (setResponse.isSuccessful()) {
                 ArrayList<data> questiondataset= setResponse.body().getData();
+                FragmentManager fm= getActivity().getSupportFragmentManager();
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), questiondataset, getParentFragmentManager(), "questionset", null);
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getContext(), questiondataset, fm, "questionset", null);
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerView.setLayoutManager(layoutManager);
             }

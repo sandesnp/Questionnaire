@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cutout_size">18dp</dimen>
+    <dimen name="dialogFragmentHeight">700dp</dimen>
+    <dimen name="dialogFragmentWidth">420dp</dimen>
+
+<!--    <dimen name="dialogFragmentHeight">600dp</dimen>-->
+<!--    <dimen name="dialogFragmentWidth">380dp</dimen>-->
+</resources>

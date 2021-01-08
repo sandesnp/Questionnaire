@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_curve_black"
+    android:orientation="vertical"
+
+    android:padding="15dp"
+    tools:context=".fragments.innerfragments.fragmentResult">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray" />
+
+        <TextView
+            android:id="@+id/tvtotalpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Total Points"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvtotalpointans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="@string/default_question"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvtotalattempt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvtotalpoint"
+            android:layout_margin="20dp"
+            android:text="Attempts Made"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvtotalattemptans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvtotalpoint"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="@string/default_question"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvtotalwrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalattempt"
+            android:layout_margin="20dp"
+            android:text="Total Wrong"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvtotalwrongans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalattempt"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="@string/default_question"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvtotalright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalwrong"
+            android:layout_margin="20dp"
+            android:text="Total Correct"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvtotalrightans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalwrong"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="@string/default_question"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvtotalfinalpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalright"
+            android:layout_margin="20dp"
+            android:text="Total Final Points"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvtotalfinalpointans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtotalright"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:text="@string/default_question"
+            android:textColor="@color/black" />
+
+        <View
+            android:id="@+id/viewbelowtvtotalans"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/tvtotalfinalpoint"
+            android:layout_margin="20dp"
+            android:background="@color/gray" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btngotodashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewbelowtvtotalans"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white"
+            android:text="Close"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:theme="@style/Theme.MaterialComponents" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btngotoQA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btngotodashboard"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white"
+            android:text="Check Answers"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:theme="@style/Theme.MaterialComponents" />
+    </RelativeLayout>
+</LinearLayout>

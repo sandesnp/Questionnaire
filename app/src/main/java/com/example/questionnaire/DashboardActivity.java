@@ -73,5 +73,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public void onBackPressed() {
         super.onBackPressed();
         global.point = 0;
+//        global.questions=null;
+//        global.attempt=null;
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment_container, new fragmentDashboard());
+//        transaction.commit();
     }
 }

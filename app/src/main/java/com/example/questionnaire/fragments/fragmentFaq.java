@@ -48,8 +48,6 @@ public class fragmentFaq extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return view;
     }
 }

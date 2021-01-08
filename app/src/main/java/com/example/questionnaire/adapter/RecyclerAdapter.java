@@ -18,6 +18,7 @@ import com.example.questionnaire.R;
 import com.example.questionnaire.fragments.innerfragments.fragmentQuestion;
 import com.example.questionnaire.global.global;
 
+import com.example.questionnaire.models.attempt;
 import com.example.questionnaire.models.data;
 import com.example.questionnaire.models.objectives;
 import com.example.questionnaire.models.questions;
@@ -34,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     FragmentManager fm;
     String inflateType;
     ArrayList<questions> listTheQuestion;
-    private Map<String, String> Question_Set;
+
 
     public RecyclerAdapter(Context mContext, ArrayList<data> listQuestion, FragmentManager fm, String inflateType, ArrayList<questions> listTheQuestion) {
         this.mContext = mContext;
@@ -81,30 +82,54 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 break;
             case "thequestion":
                 questions question = listTheQuestion.get(position);
-                Question_Set = new HashMap<>();
+                global.questions=listTheQuestion;
+                Map<String, String> Question_Set = new HashMap<>();
                 for (objectives obj : question.getObjectives()) {
-                    Question_Set.put(obj.getAnswer(), obj.getId());
+                    Question_Set.put( obj.getAnswer(),obj.getId());  //key | value
                 }
                 holder.R_answerA.setText(Question_Set.keySet().toArray()[0].toString());
                 holder.R_answerB.setText(Question_Set.keySet().toArray()[1].toString());
                 holder.R_answerC.setText(Question_Set.keySet().toArray()[2].toString());
                 holder.R_answerD.setText(Question_Set.keySet().toArray()[3].toString());
                 holder.tvthequestion.setText(Jsoup.parse(question.getQuestion()).text());
-
-                final int[] isCorrect = {0};
+                final int[] isCorrect = {0, 0, -1};
                 holder.rganswer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
                         RadioButton RadioButton = (RadioButton) radioGroup.findViewById(i);
+                        String abc= RadioButton.getText().toString();
+                        String dd= Question_Set.get(RadioButton.getText().toString());
                         if (Question_Set.get(RadioButton.getText().toString()).equals(question.getCorrect_answer())) {
                             global.point = global.point + Integer.parseInt(question.getPoints());
                             isCorrect[0] = 1;
+                            if (isCorrect[1] == 0) {
+                                if (isCorrect[2] == -1) {
+                                    attempt attempt = new attempt(global.user.getUserid(), question.getId(), question.getCorrect_answer(),
+                                            true);
+                                    global.attempt.add(attempt);
+                                    isCorrect[2] = global.attempt.indexOf(attempt);
+                                } else {
+                                    global.attempt.set(isCorrect[2], new attempt(global.user.getUserid(), question.getId(), question.getCorrect_answer(),
+                                            true));
+                                }
+                                isCorrect[1] = 1;
+                            }
                         } else {
+                            if (isCorrect[2] == -1) {
+                                attempt attempt = new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
+                                        false);
+                                global.attempt.add(attempt);
+                                isCorrect[2] = global.attempt.indexOf(attempt);
+                            } else {
+                                global.attempt.set(isCorrect[2], new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
+                                        false));
+                            }
                             if (isCorrect[0] == 0) {
                                 return;
                             }
                             global.point = global.point - Integer.parseInt(question.getPoints());
                             isCorrect[0] = 0;
+                            isCorrect[1] = 0;
                         }
                         fragmentQuestion.point.setText(global.point + "");
                     }
@@ -127,7 +152,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         public RadioButton R_answerA, R_answerB, R_answerC, R_answerD;
         public TextView tvthequestion;
         public RadioGroup rganswer;
-
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             questions = itemView.findViewById(R.id.tv_questions);
