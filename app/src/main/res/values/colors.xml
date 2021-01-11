@@ -10,6 +10,8 @@
     <color name="red">#D85858</color>
     <color name="white_red">#ED8E8E</color>
     <color name="gray">#B8B4B4</color>
+    <color name="dark_gray">#757575</color>
+    <color name="almost_white">#ECECEC</color>
 
 
     <color name="Wrong">#EC8F8F</color>

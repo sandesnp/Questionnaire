@@ -1,6 +1,7 @@
 package com.example.questionnaire.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +25,10 @@ import com.example.questionnaire.models.data;
 import com.example.questionnaire.models.objectives;
 import com.example.questionnaire.models.questions;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.shape.CornerTreatment;
+import com.google.android.material.shape.CutCornerTreatment;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.jsoup.Jsoup;
 
@@ -83,10 +89,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 break;
             case "thequestion":
                 questions question = listTheQuestion.get(position);
-                global.questions=listTheQuestion;
+
+                ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
+                        .toBuilder()
+                        .setAllCorners(new CutCornerTreatment()).setAllCornerSizes(50) //top right edge cut
+                        .build();
+
+                MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+                ViewCompat.setBackground(holder.linearLayout_theQuestion, shapeDrawable);
+                global.questions = listTheQuestion;
+
+
                 Map<String, String> Question_Set = new HashMap<>();
                 for (objectives obj : question.getObjectives()) {
-                    Question_Set.put( obj.getAnswer(),obj.getId());  //key | value
+                    Question_Set.put(obj.getAnswer(), obj.getId());  //key | value
                 }
                 holder.R_answerA.setText(Question_Set.keySet().toArray()[0].toString());
                 holder.R_answerB.setText(Question_Set.keySet().toArray()[1].toString());
@@ -98,8 +114,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                     @Override
                     public void onCheckedChanged(RadioGroup radioGroup, int i) {
                         RadioButton RadioButton = (RadioButton) radioGroup.findViewById(i);
-                        String abc= RadioButton.getText().toString();
-                        String dd= Question_Set.get(RadioButton.getText().toString());
+
                         if (Question_Set.get(RadioButton.getText().toString()).equals(question.getCorrect_answer())) {
                             global.point = global.point + Integer.parseInt(question.getPoints());
                             isCorrect[0] = 1;
@@ -152,6 +167,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         public RadioButton R_answerA, R_answerB, R_answerC, R_answerD;
         public TextView tvthequestion;
         public RadioGroup rganswer;
+        LinearLayout linearLayout_theQuestion;
+
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             questions = itemView.findViewById(R.id.tv_questions);
@@ -161,6 +178,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             R_answerD = itemView.findViewById(R.id.rbanswerD);
             rganswer = itemView.findViewById(R.id.rganswer);
             tvthequestion = itemView.findViewById(R.id.tvthequestion);
+            linearLayout_theQuestion = itemView.findViewById(R.id.linearlayout_thequestion);
         }
     }
 }

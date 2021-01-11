@@ -1,6 +1,7 @@
 package com.example.questionnaire;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.utils.CurveFit;
 
 import com.example.questionnaire.global.global;
 import com.example.questionnaire.models.user;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         etusername = findViewById(R.id.etusername);
         etpassword = findViewById(R.id.etpassword);
+
         btnLogin = findViewById(R.id.btnlogin);
 
         ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 .setAllCorners(new CornerTreatment()).setAllCornerSizes(50) //bottom left edge is made 90 degree |||Note: This is executed first before cutCorner
                 .build();
         btnLogin.setShapeAppearanceModel(shapeAppearanceModel);
-
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             user.setEmail("admin@yahoo.com");
             user.setName("admin admin");
             user.setPassword("admin");
-            global.user=user;
+            global.user = user;
             startActivity(new Intent(this, DashboardActivity.class));
         }
     }

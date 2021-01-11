@@ -42,6 +42,9 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
         holder.tvQuestion.setText(Jsoup.parse(qa.getQuestion()).text());
         holder.tvAnswer.setText(qa.getAnswer());
         holder.tvCorrectAnswer.setText(qa.getCorrect_answer());
+        int questionNo = position + 1;
+        String positionIndex = "Question " + questionNo;
+        holder.tvQuestionIndex.setText(positionIndex);
         if (qa.getAnswer().equals(qa.getCorrect_answer())) {
             holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Correct));
 
@@ -57,7 +60,7 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
 
     public class QaViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvQuestion, tvAnswer, tvCorrectAnswer;
+        TextView tvQuestion, tvAnswer, tvCorrectAnswer, tvQuestionIndex;
         RelativeLayout rlQaIsCorrect;
 
         public QaViewHolder(@NonNull View itemView) {
@@ -66,6 +69,7 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
             tvAnswer = itemView.findViewById(R.id.tvqaanswerans);
             tvCorrectAnswer = itemView.findViewById(R.id.tvqacorrectanswerans);
             rlQaIsCorrect = itemView.findViewById(R.id.relativelayoutiscorrect);
+            tvQuestionIndex = itemView.findViewById(R.id.tvqaquestionindex);
         }
     }
 

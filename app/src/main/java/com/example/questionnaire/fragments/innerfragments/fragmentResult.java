@@ -34,10 +34,9 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                 result_question = (result_question) bundle.getSerializable("answer");
                 answers result = result_question.getAnswers();
                 if (result != null) {
-                    int totalAttempt = 0, totalWrong = 0, totalRight = 0, totalPoints = 0;
+                    int totalAttempt = result.getAttempt().size(), totalWrong = 0, totalRight = 0, totalPoints = 0;
 
                     for (attempt atmp : result.getAttempt()) {
-                        totalAttempt += 1;
                         if (atmp.isStatus()) {
                             totalRight += 1;
                         } else {
@@ -47,7 +46,7 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                     for (questions q : global.questions) {
                         totalPoints += 5;
                     }
-                    tvAttempt.setText(totalAttempt + "");
+                    tvAttempt.setText(totalAttempt+"" );
                     tvTotalRight.setText(totalRight + "");
                     tvTotalWrong.setText(totalWrong + "");
                     tvPoint.setText(totalPoints + "");
