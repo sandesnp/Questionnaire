@@ -46,7 +46,7 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                     for (questions q : global.questions) {
                         totalPoints += 5;
                     }
-                    tvAttempt.setText(totalAttempt+"" );
+                    tvAttempt.setText(totalAttempt + "");
                     tvTotalRight.setText(totalRight + "");
                     tvTotalWrong.setText(totalWrong + "");
                     tvPoint.setText(totalPoints + "");
@@ -67,9 +67,13 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
         View view = inflater.inflate(R.layout.fragment_result, container, false);
 
         //width: 1103 | height: 1138
-        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
-        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
-        getDialog().getWindow().setLayout(width, height);
+        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+//        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
+//        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
+//        getDialog().getWindow().setLayout(width, height);
         tvPoint = view.findViewById(R.id.tvtotalpointans);
         tvAttempt = view.findViewById(R.id.tvtotalattemptans);
         tvTotalWrong = view.findViewById(R.id.tvtotalwrongans);
@@ -100,5 +104,11 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                 fragmentQA.show(getParentFragmentManager(), "fragment_QA");
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

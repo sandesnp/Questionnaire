@@ -1,6 +1,8 @@
 package com.example.questionnaire;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.utils.CurveFit;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.questionnaire.global.global;
 import com.example.questionnaire.models.user;
@@ -62,5 +67,10 @@ public class MainActivity extends AppCompatActivity {
             global.user = user;
             startActivity(new Intent(this, DashboardActivity.class));
         }
+    }
+
+    public void onRegisterClick(View View) {
+        startActivity(new Intent(this, RegisterActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
     }
 }

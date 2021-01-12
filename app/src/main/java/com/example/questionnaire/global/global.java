@@ -19,7 +19,6 @@ public class global {
     public static user user;
     public static ArrayList<questions> questions=new ArrayList<>();
     public static ArrayList<attempt> attempt= new ArrayList<>();
-
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Base_URL)

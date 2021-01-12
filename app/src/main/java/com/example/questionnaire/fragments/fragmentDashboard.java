@@ -37,6 +37,7 @@ public class fragmentDashboard extends Fragment {
 
         global.questions.clear();
         global.attempt.clear();
+
         recyclerView = view.findViewById(R.id.recycler_view_question);
 
         httpRequests httpRequests = global.getInstance().create(httpRequests.class);

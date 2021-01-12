@@ -63,37 +63,51 @@ public class fragmentQuestion extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_question, container, false);
+        global.point = 0;
         recyclerView = view.findViewById(R.id.recycler_view_thequestions);
         btnSubmitAnswer = view.findViewById(R.id.btnsubmitanswer);
         point = view.findViewById(R.id.tvglobalquestion);
         btnSubmitAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                answers answers = new answers();
-                answers.setAttempt(global.attempt);
-                answers.setTotal(global.point);
-                result_question result_question = new result_question();
-                result_question.setAnswers(answers);
-                result_question.setQuestions(global.questions);
-                httpRequests httpRequests = global.getInstance().create(httpRequests.class);
-                Call<Void> call = httpRequests.postAnswer(answers);
-                try {
-                    Response<Void> response = call.execute();
-                    if (!response.isSuccessful()) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("answer", result_question);
-                        getParentFragmentManager().setFragmentResult("withObject_answers", bundle);
-                        fragmentResult fragmentResult = new fragmentResult();
-                        fragmentResult.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
-                        fragmentResult.show(getParentFragmentManager(), "fragment_Result");
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
+                requestQuestion();
             }
         });
         return view;
     }
+
+
+    public void requestQuestion() {
+        if (global.questions.size() != global.attempt.size()) {
+            Toast.makeText(getContext(), "Please select answer for all the question.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        answers answers = new answers();
+        answers.setAttempt(global.attempt);
+        answers.setTotal(global.point);
+        result_question result_question = new result_question();
+        result_question.setAnswers(answers);
+        result_question.setQuestions(global.questions);
+        httpRequests httpRequests = global.getInstance().create(httpRequests.class);
+
+        Call<Void> call = httpRequests.postAnswer(answers);
+        try {
+            Response<Void> response = call.execute();
+            if (!response.isSuccessful()) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("answer", result_question);
+                getParentFragmentManager().setFragmentResult("withObject_answers", bundle);
+                fragmentResult fragmentResult = new fragmentResult();
+                fragmentResult.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
+                fragmentResult.show(getParentFragmentManager(), "fragment_Result");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 }

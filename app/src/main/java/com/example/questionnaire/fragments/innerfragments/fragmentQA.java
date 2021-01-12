@@ -43,19 +43,36 @@ public class fragmentQA extends DialogFragment {
                 answers result = result_question.getAnswers();
                 if (result != null) {
                     ArrayList<qa> qaList = new ArrayList<>();
-                    for (questions questions : result_question.getQuestions()) {
+                    int currentRun = 0;
+                    for (int i = 0; i < result_question.getQuestions().size(); i++) {
+                        String correctAnswer = result_question.getQuestions().get(i).getCorrect_answer();
+                        int reLoop = 0;
                         qa qa = new qa();
-                        for (attempt atmpt : result.getAttempt()) {
-                            for (objectives obj : questions.getObjectives()) {
-                                if (obj.getId().equals(atmpt.getAnswer())) {
-                                    qa.setAnswer(obj.getAnswer());
+                        for (int i2 = 0; i2 < result.getAttempt().size(); i2++) {
+                            if (reLoop == 2) {
+                                break;
+                            }
+                            String attemptAnswerId = result.getAttempt().get(currentRun).getAnswer();
+                            currentRun += 1;
+                            //comparing each attemptAnswerID to all 4 answers of a each question until its right then inserting it on a object.
+                            //Same for correctAnswer
+                            for (int i3 = 0; i3 < result_question.getQuestions().get(i).getObjectives().size(); i3++) {
+                                if (reLoop == 2) {
+                                    break;
                                 }
-                                if (questions.getCorrect_answer().equals(obj.getId())) {
-                                    qa.setCorrect_answer(obj.getAnswer());
+                                String objectiveID = result_question.getQuestions().get(i).getObjectives().get(i3).getId();
+                                String objectiveIDAns = result_question.getQuestions().get(i).getObjectives().get(i3).getAnswer();
+                                if (objectiveID.equals(attemptAnswerId)) {
+                                    qa.setAnswer(objectiveIDAns);
+                                    reLoop += 1;
+                                }
+                                if (correctAnswer.equals(objectiveID)) {
+                                    qa.setCorrect_answer(objectiveIDAns);
+                                    reLoop += 1;
                                 }
                             }
                         }
-                        qa.setQuestion(questions.getQuestion());
+                        qa.setQuestion(result_question.getQuestions().get(i).getQuestion());
                         qaList.add(qa);
                     }
 
@@ -77,9 +94,14 @@ public class fragmentQA extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_q_a, container, false);
-        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
-        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
-        getDialog().getWindow().setLayout(width, height);
+
+        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+//        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
+//        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
+//        getDialog().getWindow().setLayout(width, height);
         recyclerView = view.findViewById(R.id.recycler_view_qa);
         btnQaClose = view.findViewById(R.id.btnqaclose);
         btnQaClose.setOnClickListener(new View.OnClickListener() {
