@@ -99,9 +99,7 @@ public class fragmentQA extends DialogFragment {
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
-//        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
-//        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
-//        getDialog().getWindow().setLayout(width, height);
+
         recyclerView = view.findViewById(R.id.recycler_view_qa);
         btnQaClose = view.findViewById(R.id.btnqaclose);
         btnQaClose.setOnClickListener(new View.OnClickListener() {

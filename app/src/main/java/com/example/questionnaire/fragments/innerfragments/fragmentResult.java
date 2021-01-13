@@ -1,25 +1,26 @@
 package com.example.questionnaire.fragments.innerfragments;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentResultListener;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.questionnaire.R;
+import com.example.questionnaire.apiInterface.httpRequests;
 import com.example.questionnaire.global.global;
 import com.example.questionnaire.models.answers;
 import com.example.questionnaire.models.attempt;
 import com.example.questionnaire.models.questions;
+import com.example.questionnaire.models.result;
 import com.example.questionnaire.models.result_question;
 import com.google.android.material.button.MaterialButton;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class fragmentResult extends DialogFragment implements View.OnClickListener {
 
@@ -30,10 +31,10 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
                 result_question = (result_question) bundle.getSerializable("answer");
-                answers result = result_question.getAnswers();
-                if (result != null) {
-                    int totalAttempt = result.getAttempt().size(), totalWrong = 0, totalRight = 0, totalPoints = 0;
-                    for (attempt atmp : result.getAttempt()) {
+                answers answers = result_question.getAnswers();
+                if (answers != null) {
+                    int totalAttempt = answers.getAttempt().size(), totalWrong = 0, totalRight = 0, totalPoints = 0, totalQuestions = 0;
+                    for (attempt atmp : answers.getAttempt()) {
                         if (atmp.isStatus()) {
                             totalRight += 1;
                         } else {
@@ -42,12 +43,14 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                     }
                     for (questions q : global.questions) {
                         totalPoints += 5;
+                        totalQuestions += 1;
                     }
                     tvAttempt.setText(totalAttempt + "");
                     tvTotalRight.setText(totalRight + "");
                     tvTotalWrong.setText(totalWrong + "");
                     tvPoint.setText(totalPoints + "");
-                    tvFinalPoint.setText(result.getTotal() + "");
+                    tvFinalPoint.setText(answers.getTotal() + "");
+
                 }
             }
         });
@@ -68,9 +71,6 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
-//        int width = getResources().getDimensionPixelSize(R.dimen.dialogFragmentWidth);
-//        int height = getResources().getDimensionPixelSize(R.dimen.dialogFragmentHeight);
-//        getDialog().getWindow().setLayout(width, height);
         tvPoint = view.findViewById(R.id.tvtotalpointans);
         tvAttempt = view.findViewById(R.id.tvtotalattemptans);
         tvTotalWrong = view.findViewById(R.id.tvtotalwrongans);

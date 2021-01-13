@@ -2,6 +2,7 @@ package com.example.questionnaire.apiInterface;
 
 import com.example.questionnaire.models.answers;
 import com.example.questionnaire.models.faq;
+import com.example.questionnaire.models.result;
 import com.example.questionnaire.models.set;
 import com.example.questionnaire.models.user;
 import com.example.questionnaire.response.responseImage;
@@ -23,7 +24,7 @@ public interface httpRequests {
     Call<faq> getFaq();
 
     @POST("/api/test")
-    Call<Void> postAnswer(@Body answers answers);
+    Call<Void> postAnswer(@Body result result);
 
     @Multipart
     @POST("upload")
