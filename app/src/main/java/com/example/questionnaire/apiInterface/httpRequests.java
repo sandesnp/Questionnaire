@@ -3,7 +3,9 @@ package com.example.questionnaire.apiInterface;
 import com.example.questionnaire.models.answers;
 import com.example.questionnaire.models.faq;
 import com.example.questionnaire.models.set;
+import com.example.questionnaire.models.user;
 import com.example.questionnaire.response.responseImage;
+import com.example.questionnaire.response.responseUser;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -27,4 +29,6 @@ public interface httpRequests {
     @POST("upload")
     Call<responseImage> uploadImage(@Part MultipartBody.Part img);
 
+    @POST("license_qa/public/api/register")
+    Call<responseUser> userRegister(@Body user user);
 }

@@ -1,23 +1,16 @@
 package com.example.questionnaire.fragments.innerfragments;
-
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.questionnaire.R;
 import com.example.questionnaire.adapter.RecyclerAdapter;
 import com.example.questionnaire.apiInterface.httpRequests;
@@ -27,9 +20,7 @@ import com.example.questionnaire.models.data;
 import com.example.questionnaire.models.questions;
 import com.example.questionnaire.models.result_question;
 import com.google.android.material.button.MaterialButton;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -100,14 +91,10 @@ public class fragmentQuestion extends Fragment {
                 fragmentResult fragmentResult = new fragmentResult();
                 fragmentResult.setStyle(DialogFragment.STYLE_NORMAL, R.style.checkoutFragmentXY);
                 fragmentResult.show(getParentFragmentManager(), "fragment_Result");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }

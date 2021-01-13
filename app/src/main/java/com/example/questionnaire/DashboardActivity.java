@@ -46,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        global.StrictMode();
+
         loadFragment(new fragmentDashboard());
         loadingProfileImage();
     }

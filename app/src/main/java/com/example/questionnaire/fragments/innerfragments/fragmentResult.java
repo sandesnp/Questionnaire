@@ -1,11 +1,9 @@
 package com.example.questionnaire.fragments.innerfragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
@@ -35,7 +33,6 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
                 answers result = result_question.getAnswers();
                 if (result != null) {
                     int totalAttempt = result.getAttempt().size(), totalWrong = 0, totalRight = 0, totalPoints = 0;
-
                     for (attempt atmp : result.getAttempt()) {
                         if (atmp.isStatus()) {
                             totalRight += 1;

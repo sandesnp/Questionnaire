@@ -13,15 +13,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class global {
 
-    public static int point=0;
+    public static int point = 0;
     public static final String Base_URL = "http://license.techcoderznepal.com/";
+    public static final String Base_URLTest = "http://eb64d3aafcec.ngrok.io/";
     public static String token = "Bearer ";
     public static user user;
-    public static ArrayList<questions> questions=new ArrayList<>();
-    public static ArrayList<attempt> attempt= new ArrayList<>();
+    public static ArrayList<questions> questions = new ArrayList<>();
+    public static ArrayList<attempt> attempt = new ArrayList<>();
+
+
     public static Retrofit getInstance() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Base_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+
+    public static Retrofit getInstanceTest() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Base_URLTest)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;

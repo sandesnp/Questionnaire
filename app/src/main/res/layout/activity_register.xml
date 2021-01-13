@@ -13,7 +13,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="520dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="200dp"
             android:background="@drawable/view_curve_invert"
@@ -49,7 +49,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="440dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="140dp"
             android:layout_marginEnd="28dp"
@@ -80,6 +80,21 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etremail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="300dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField01"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Full name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etrfullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout_editor_absoluteX="0dp"
@@ -129,7 +144,7 @@
             android:layout_height="70dp"
             android:layout_marginStart="120dp"
             android:layout_marginEnd="120dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="0dp"
             android:gravity="center"
             android:padding="10dp"
             android:text="Register"

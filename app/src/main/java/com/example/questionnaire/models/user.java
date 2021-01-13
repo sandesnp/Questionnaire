@@ -2,7 +2,7 @@ package com.example.questionnaire.models;
 
 public class user {
     private int userid;
-    private String email, password, profile_image;
+    private String email, password, profile_image, name;
 
     public int getUserid() {
         return userid;
@@ -34,5 +34,13 @@ public class user {
 
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -12,6 +12,7 @@ import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -26,9 +27,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.questionnaire.apiInterface.httpRequests;
+import com.example.questionnaire.classes.userRegister;
 import com.example.questionnaire.global.global;
 import com.example.questionnaire.models.user;
 import com.example.questionnaire.response.responseImage;
+import com.example.questionnaire.response.responseUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -54,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     GoogleSignInClient mGoogleSignInClient;
     SignInButton signInButton;
     MaterialButton btnRegister;
-    EditText etEmail, etPassword, etRePassword;
+    EditText etEmail, etPassword, etRePassword, etFullName;
     CircleImageView CivRImage;
 
     @Override
@@ -64,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         grantPermission();
         signInButton = findViewById(R.id.sign_in_button);
         etEmail = findViewById(R.id.etremail);
+        etFullName = findViewById(R.id.etrfullname);
         etPassword = findViewById(R.id.etrpassword);
         etRePassword = findViewById(R.id.etrrepassword);
         CivRImage = findViewById(R.id.circleimagerimage);
@@ -170,7 +174,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             user.setUserid(1);
             user.setEmail(account.getEmail());
             user.setProfile_image(account.getPhotoUrl().toString());
-            global.user=user;
+            global.user = user;
             startActivity(new Intent(this, DashboardActivity.class));
             Toast.makeText(this, account.getDisplayName(), Toast.LENGTH_SHORT).show();
         } else {
@@ -192,7 +196,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
-
 
     //----------Permission Request to Read External Storage
 
@@ -219,6 +222,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     //---------------------Validation Check
 
     private boolean isValidEmailId(String email) {
+
         return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
                 + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
                 + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
@@ -229,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     public void validationCheck() {
-        if (isValidEmailId(etEmail.getText().toString().trim())) {
+        if (!isValidEmailId(etEmail.getText().toString().trim())) {
             etEmail.setError("Please Enter Correct form of email.");
             etEmail.requestFocus();
             return;
@@ -241,12 +245,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             etRePassword.setError("Please Re-enter password.");
             etRePassword.requestFocus();
             return;
-        } else if (!etPassword.equals(etRePassword)) {
-            Toast.makeText(this, "Password doesn't match.", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(etFullName.getText())) {
+            etFullName.setError("Please enter Full name.");
+            etFullName.requestFocus();
             return;
         }
+        String Password = etPassword.getText().toString();
+        String RePassword = etRePassword.getText().toString();
+        if (!Password.equals(RePassword)) {
+            Toast.makeText(this, "Password Doesn't Match.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        userSingUp();
+    }
 
-        Toast.makeText(this, "Assumption: Logged In", Toast.LENGTH_SHORT).show();
+    public static Context contextMainActivity;
+    private void userSingUp() {
+        RegisterActivity.contextMainActivity=getApplicationContext();
+        user user = new user();
+        user.setEmail(etEmail.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        user.setName(etFullName.getText().toString());
+        if (new userRegister(user).isSingedUp()) {
+            startActivity(new Intent(this, DashboardActivity.class));
+        }
     }
 
     //------------------------Animation for onClick

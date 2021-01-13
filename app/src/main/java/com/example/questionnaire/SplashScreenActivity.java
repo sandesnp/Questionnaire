@@ -3,13 +3,12 @@ package com.example.questionnaire;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.questionnaire.classes.broadCastingClass;
+import com.example.questionnaire.global.global;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -19,6 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        global.StrictMode();
         Handler handler = new Handler();
         if (broadcastingClass.onReceive(this)) {
             handler.postDelayed(new Runnable() {
