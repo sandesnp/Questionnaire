@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             user user = new user();
             user.setUserid(1);
             user.setEmail("admin@yahoo.com");
-            user.setName("admin admin");
             user.setPassword("admin");
             global.user = user;
             startActivity(new Intent(this, DashboardActivity.class));

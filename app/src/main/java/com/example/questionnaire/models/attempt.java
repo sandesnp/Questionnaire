@@ -3,13 +3,13 @@ package com.example.questionnaire.models;
 public class attempt {
 
     private int userid, questionid;
-    private String answer;
+    private String answerid;
     private boolean status;
 
-    public attempt(int userid, int questionid, String answer, boolean status) {
+    public attempt(int userid, int questionid, String answerid, boolean status) {
         this.userid = userid;
         this.questionid = questionid;
-        this.answer = answer;
+        this.answerid = answerid;
         this.status = status;
     }
 
@@ -22,7 +22,7 @@ public class attempt {
     }
 
     public String getAnswer() {
-        return answer;
+        return answerid;
     }
 
     public boolean isStatus() {

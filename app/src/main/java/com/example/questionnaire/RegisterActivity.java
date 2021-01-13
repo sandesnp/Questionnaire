@@ -18,12 +18,17 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.questionnaire.apiInterface.httpRequests;
+import com.example.questionnaire.global.global;
+import com.example.questionnaire.models.user;
+import com.example.questionnaire.response.responseImage;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -35,11 +40,14 @@ import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -92,6 +100,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     String imagePath;
 
+    //-------Image selection and post request and retrieving imagePath after post request.
+    public void postImage(String imagePath) {
+        String imageName = "";
+        File file = new File(imagePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+
+        httpRequests httpRequests = global.getInstance().create(httpRequests.class);
+        Call<responseImage> responseImageCall = httpRequests.uploadImage(body);
+        try {
+            Response<responseImage> imageResponse = responseImageCall.execute();
+            imageName = imageResponse.body().getFilename();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private String getImagePath(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(), uri, projection, null, null, null);
@@ -124,6 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    //-----------Google Sing in
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -140,7 +166,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void updateUI(GoogleSignInAccount account) {
         if (account != null) {
-            signInButton.setVisibility(View.GONE);
+            user user = new user();
+            user.setUserid(1);
+            user.setEmail(account.getEmail());
+            user.setProfile_image(account.getPhotoUrl().toString());
+            global.user=user;
+            startActivity(new Intent(this, DashboardActivity.class));
             Toast.makeText(this, account.getDisplayName(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -157,10 +188,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 selectImage();
                 break;
             case R.id.btnregister:
-                Toast.makeText(this, "Assumption: Registered", Toast.LENGTH_SHORT).show();
+                validationCheck();
                 break;
         }
     }
+
+
+    //----------Permission Request to Read External Storage
 
     int External_Storage, Storage_Permission_Code = 1;
 
@@ -182,9 +216,43 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    //---------------------Validation Check
 
+    private boolean isValidEmailId(String email) {
+        return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
+    }
+
+
+    public void validationCheck() {
+        if (isValidEmailId(etEmail.getText().toString().trim())) {
+            etEmail.setError("Please Enter Correct form of email.");
+            etEmail.requestFocus();
+            return;
+        } else if (TextUtils.isEmpty(etPassword.getText())) {
+            etPassword.setError("Please enter password.");
+            etPassword.requestFocus();
+            return;
+        } else if (TextUtils.isEmpty(etRePassword.getText())) {
+            etRePassword.setError("Please Re-enter password.");
+            etRePassword.requestFocus();
+            return;
+        } else if (!etPassword.equals(etRePassword)) {
+            Toast.makeText(this, "Password doesn't match.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(this, "Assumption: Logged In", Toast.LENGTH_SHORT).show();
+    }
+
+    //------------------------Animation for onClick
     public void onLoginClick(View view) {
         startActivity(new Intent(this, MainActivity.class));
         overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
     }
+
 }
