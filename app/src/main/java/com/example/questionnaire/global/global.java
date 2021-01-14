@@ -15,7 +15,7 @@ public class global {
 
     public static int point = 0;
     public static final String Base_URL = "http://license.techcoderznepal.com/";
-    public static final String Base_URLTest = "http://eb64d3aafcec.ngrok.io/";
+    public static final String Base_URLTest = "http://5ddd3196c479.ngrok.io/";
     public static String token = "Bearer ";
     public static user user;
     public static ArrayList<questions> questions = new ArrayList<>();

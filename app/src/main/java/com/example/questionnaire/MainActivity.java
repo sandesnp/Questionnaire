@@ -16,6 +16,7 @@ import androidx.constraintlayout.motion.utils.CurveFit;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.questionnaire.classes.userLogin;
 import com.example.questionnaire.global.global;
 import com.example.questionnaire.models.user;
 import com.google.android.material.button.MaterialButton;
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         String username, password;
         username = etusername.getText().toString();
         password = etpassword.getText().toString();
-        if (username.equals("admin") && password.equals("admin")) {
+
+        if (!new userLogin(username, password).isLoggedIn()) {
             user user = new user();
             user.setUserid(1);
             user.setEmail("admin@yahoo.com");

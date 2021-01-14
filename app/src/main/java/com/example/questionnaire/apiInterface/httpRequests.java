@@ -11,6 +11,8 @@ import com.example.questionnaire.response.responseUser;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -30,6 +32,10 @@ public interface httpRequests {
     @POST("upload")
     Call<responseImage> uploadImage(@Part MultipartBody.Part img);
 
-    @POST("license_qa/public/api/register")
+    @POST("api/register")
     Call<responseUser> userRegister(@Body user user);
+
+    @FormUrlEncoded
+    @POST("api/login")
+    Call<responseUser> userLogin(@Field("email") String email, @Field("password") String password);
 }

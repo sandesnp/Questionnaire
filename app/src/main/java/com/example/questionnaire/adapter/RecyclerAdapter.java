@@ -119,25 +119,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                             isCorrect[0] = 1;
                             if (isCorrect[1] == 0) {
                                 if (isCorrect[2] == -1) {
-                                    attempt attempt = new attempt(global.user.getUserid(), question.getId(), question.getCorrect_answer(),
-                                            true);
+                                    attempt attempt = new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
+                                            true, RadioButton.getText().toString(), Jsoup.parse(question.getQuestion()).text());
                                     global.attempt.add(attempt);
                                     isCorrect[2] = global.attempt.indexOf(attempt);
                                 } else {
-                                    global.attempt.set(isCorrect[2], new attempt(global.user.getUserid(), question.getId(), question.getCorrect_answer(),
-                                            true));
+                                    global.attempt.set(isCorrect[2], new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
+                                            true, RadioButton.getText().toString(),Jsoup.parse(question.getQuestion()).text()));
                                 }
                                 isCorrect[1] = 1;
                             }
                         } else {
                             if (isCorrect[2] == -1) {
                                 attempt attempt = new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
-                                        false);
+                                        false, RadioButton.getText().toString(),Jsoup.parse(question.getQuestion()).text());
                                 global.attempt.add(attempt);
                                 isCorrect[2] = global.attempt.indexOf(attempt);
                             } else {
                                 global.attempt.set(isCorrect[2], new attempt(global.user.getUserid(), question.getId(), Question_Set.get(RadioButton.getText().toString()),
-                                        false));
+                                        false, RadioButton.getText().toString(),Jsoup.parse(question.getQuestion()).text()));
                             }
                             if (isCorrect[0] == 0) {
                                 return;

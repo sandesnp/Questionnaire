@@ -45,12 +45,15 @@ public class QaAdapter extends RecyclerView.Adapter<QaAdapter.QaViewHolder> {
         int questionNo = position + 1;
         String positionIndex = "Question " + questionNo;
         holder.tvQuestionIndex.setText(positionIndex);
-        if (qa.getAnswer().equals(qa.getCorrect_answer())) {
-            holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Correct));
+        if(qa.getAnswer()!=null){
+            if (qa.getAnswer().equals(qa.getCorrect_answer())) {
+                holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Correct));
 
-        } else {
-            holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Wrong));
+            } else {
+                holder.rlQaIsCorrect.setBackgroundColor(ContextCompat.getColor(mContext, R.color.Wrong));
+            }
         }
+
     }
 
     @Override

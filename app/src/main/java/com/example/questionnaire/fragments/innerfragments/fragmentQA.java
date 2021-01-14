@@ -40,39 +40,48 @@ public class fragmentQA extends DialogFragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
                 result_question = (result_question) bundle.getSerializable("answer2");
+                result_question result_question2 = result_question;
                 answers result = result_question.getAnswers();
                 if (result != null) {
                     ArrayList<qa> qaList = new ArrayList<>();
-                    int currentRun = 0;
-                    for (int i = 0; i < result_question.getQuestions().size(); i++) {
-                        String correctAnswer = result_question.getQuestions().get(i).getCorrect_answer();
-                        int reLoop = 0;
+
+                    for (int i1 = 0; i1 < result.getAttempt().size(); i1++) {
                         qa qa = new qa();
-                        for (int i2 = 0; i2 < result.getAttempt().size(); i2++) {
-                            if (reLoop == 2) {
-                                break;
-                            }
-                            String attemptAnswerId = result.getAttempt().get(currentRun).getAnswer();
-                            currentRun += 1;
-                            //comparing each attemptAnswerID to all 4 answers of a each question until its right then inserting it on a object.
-                            //Same for correctAnswer
-                            for (int i3 = 0; i3 < result_question.getQuestions().get(i).getObjectives().size(); i3++) {
-                                if (reLoop == 2) {
-                                    break;
-                                }
-                                String objectiveID = result_question.getQuestions().get(i).getObjectives().get(i3).getId();
-                                String objectiveIDAns = result_question.getQuestions().get(i).getObjectives().get(i3).getAnswer();
-                                if (objectiveID.equals(attemptAnswerId)) {
-                                    qa.setAnswer(objectiveIDAns);
-                                    reLoop += 1;
-                                }
-                                if (correctAnswer.equals(objectiveID)) {
-                                    qa.setCorrect_answer(objectiveIDAns);
-                                    reLoop += 1;
+                        qa.setAnswer(result.getAttempt().get(i1).getJustanswer());
+                        qa.setQuestion(result.getAttempt().get(i1).getJustquestion());
+                        for (int i2 = 0; i2 < result_question.getQuestions().size(); i2++) {
+                            if (result_question.getQuestions().get(i2).getId() == result.getAttempt().get(i1).getQuestionid()) {
+                                for (int i3 = 0; i3 < result_question.getQuestions().get(i2).getObjectives().size(); i3++) {
+                                    if (result_question.getQuestions().get(i2).getCorrect_answer().
+                                            equals(result_question.getQuestions().get(i2).getObjectives().get(i3).getId())) {
+                                        qa.setCorrect_answer(result_question.getQuestions().get(i2).getObjectives().get(i3).getAnswer());
+                                        break;
+                                    }
                                 }
                             }
                         }
-                        qa.setQuestion(result_question.getQuestions().get(i).getQuestion());
+                        qaList.add(qa);
+                    }
+                    for (int i2 = 0; i2 < result.getAttempt().size(); i2++) {
+                        for (int i1 = 0; i1 < result_question.getQuestions().size(); i1++) {
+                            int a = result.getAttempt().get(i2).getQuestionid(), b = result_question.getQuestions().get(i1).getId();
+                            if (a == b) {
+                                result_question.getQuestions().remove(i1);
+                                break;
+                            }
+                        }
+                    }
+                    for (int i1 = 0; i1 < result_question2.getQuestions().size(); i1++) {
+                        qa qa = new qa();
+                        qa.setQuestion(result_question2.getQuestions().get(i1).getQuestion());
+                        qa.setAnswer("");
+                        String correct_Answer = result_question2.getQuestions().get(i1).getCorrect_answer();
+                        for (int i2 = 0; i2 < result_question2.getQuestions().get(i1).getObjectives().size(); i2++) {
+                            if (correct_Answer.equals(result_question2.getQuestions().get(i1).getObjectives().get(i2).getId())) {
+                                qa.setCorrect_answer(result_question2.getQuestions().get(i1).getObjectives().get(i2).getAnswer());
+                                break;
+                            }
+                        }
                         qaList.add(qa);
                     }
 

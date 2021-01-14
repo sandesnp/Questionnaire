@@ -77,17 +77,16 @@ public class fragmentQuestion extends Fragment {
 
 
     public void requestQuestion() {
-        if (global.questions.size() != global.attempt.size()) {
-            Toast.makeText(getContext(), "Please select answer for all the question.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (global.questions.size() != global.attempt.size()) {
+//            Toast.makeText(getContext(), "Please select answer for all the question.", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         answers answers = new answers();
         answers.setAttempt(global.attempt);
         answers.setTotal(global.point);
         result_question result_question = new result_question();
         result_question.setAnswers(answers);
         result_question.setQuestions(global.questions);
-
 
         int totalAttempt = answers.getAttempt().size(), totalWrong = 0, totalRight = 0;
         for (attempt atmp : answers.getAttempt()) {
