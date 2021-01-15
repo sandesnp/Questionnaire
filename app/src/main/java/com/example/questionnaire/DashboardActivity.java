@@ -76,7 +76,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
         transaction.detach(fragment);
         transaction.attach(fragment);
         transaction.commit();

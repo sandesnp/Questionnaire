@@ -88,7 +88,7 @@ public class fragmentQuestion extends Fragment {
         result_question.setAnswers(answers);
         result_question.setQuestions(global.questions);
 
-        int totalAttempt = answers.getAttempt().size(), totalWrong = 0, totalRight = 0;
+        int totalWrong = 0, totalRight = 0;
         for (attempt atmp : answers.getAttempt()) {
             if (atmp.isStatus()) {
                 totalRight += 1;
@@ -98,7 +98,7 @@ public class fragmentQuestion extends Fragment {
         }
 
         httpRequests httpRequests = global.getInstance().create(httpRequests.class);
-        result result = new result(global.questions.size(), totalRight, totalWrong, totalWrong, answers.getTotal(), global.user.getUserid());
+        result result = new result(global.questions.size(), totalRight, global.questions.size()-answers.getAttempt().size(), totalWrong, answers.getTotal(), global.user.getUserid());
         Call<Void> call = httpRequests.postAnswer(result);
         try {
             Response<Void> response = call.execute();

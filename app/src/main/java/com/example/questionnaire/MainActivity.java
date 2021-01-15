@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         etusername = findViewById(R.id.etusername);
         etpassword = findViewById(R.id.etpassword);
-
         btnLogin = findViewById(R.id.btnlogin);
 
         ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
@@ -73,5 +72,10 @@ public class MainActivity extends AppCompatActivity {
     public void onRegisterClick(View View) {
         startActivity(new Intent(this, RegisterActivity.class));
         overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
     }
 }

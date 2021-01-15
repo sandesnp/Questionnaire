@@ -277,4 +277,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
     }
 
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
+    }
 }
