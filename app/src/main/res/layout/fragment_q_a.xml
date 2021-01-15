@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/default_Answer"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="25sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_qa"
         android:layout_width="match_parent"
+        android:layout_marginBottom="62dp"
         android:layout_height="match_parent"
         android:layout_below="@+id/tvcorrect_answers_default"
         android:layout_marginTop="10dp"

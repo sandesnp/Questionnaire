@@ -8,4 +8,5 @@
 
     <string name="default_question"><u>Default_Question_A</u></string>
     <string name="default_Answer"><u>Check Answers</u></string>
+    <string name="default_Check_Answer">Check Answers</string>
 </resources>

@@ -8,13 +8,12 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="20dp">
-
-
+    
     <TextView
         android:id="@+id/tvqaquestionindex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_question"
+        android:text="@string/default_Check_Answer"
         android:textColor="@color/dark_gray"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -26,7 +25,7 @@
         android:layout_marginTop="10dp"
         android:paddingEnd="30dp"
         android:text="@string/default_question"
-        android:textColor="@color/dark_gray"
+        android:textColor="@color/black"
         android:textSize="15sp" />
 
 
