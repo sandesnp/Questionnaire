@@ -89,7 +89,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             circleImageViewUserImage = hView.findViewById(R.id.navigation_imguser);
             Picasso.get().load(global.user.getProfile_image()).into(circleImageViewUserImage);
         }
-
     }
 
     @Override

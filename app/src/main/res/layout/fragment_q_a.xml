@@ -35,26 +35,25 @@
             android:id="@+id/btnqagoback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="@color/white"
             android:text="Back"
             android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold"
+            android:textSize="30sp"
             android:theme="@style/Theme.MaterialComponents" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnqaclose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="@color/white"
             android:text="Close"
             android:textColor="@color/black"
-            android:textSize="40sp"
-            android:textStyle="bold"
+            android:textSize="30sp"
             android:theme="@style/Theme.MaterialComponents" />
 
     </LinearLayout>
-
 </RelativeLayout>

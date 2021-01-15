@@ -17,5 +17,6 @@
     <color name="Wrong">#EC8F8F</color>
     <color name="Correct">#5BA5F4</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="uncheckedColor">#aefff7</color>
     <color name="colorPrimary">#6200EE</color>
 </resources>

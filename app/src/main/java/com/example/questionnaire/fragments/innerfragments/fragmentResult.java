@@ -1,15 +1,19 @@
 package com.example.questionnaire.fragments.innerfragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentResultListener;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.questionnaire.R;
 import com.example.questionnaire.apiInterface.httpRequests;
 import com.example.questionnaire.global.global;
@@ -19,6 +23,7 @@ import com.example.questionnaire.models.questions;
 import com.example.questionnaire.models.result;
 import com.example.questionnaire.models.result_question;
 import com.google.android.material.button.MaterialButton;
+
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -108,4 +113,16 @@ public class fragmentResult extends DialogFragment implements View.OnClickListen
         super.onResume();
 
     }
+
+    //DialogFragment  on back pressed
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new Dialog(getActivity(), getTheme()) {
+            @Override
+            public void onBackPressed() {
+                Toast.makeText(getContext(), "Please use the close button.", Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
 }

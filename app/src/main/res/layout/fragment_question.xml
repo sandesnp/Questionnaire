@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#252C4A"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.innerfragments.fragmentQuestion">
@@ -15,6 +16,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_thequestions"
             android:layout_width="match_parent"
+            android:background="#252C4A"
             android:layout_height="wrap_content" />
 
         <com.google.android.material.button.MaterialButton
@@ -27,7 +29,8 @@
             android:textSize="20sp"
             android:theme="@style/Theme.MaterialComponents" />
     </LinearLayout>
-
+    <!--tvglobalquestion is used for blackbox testing if the checked answered is wrong or right-->
+    <!--    Set it to visible to check-->
     <TextView
         android:id="@+id/tvglobalquestion"
         android:layout_width="wrap_content"
@@ -37,5 +40,6 @@
         android:background="@color/black"
         android:text="0"
         android:textColor="@color/white"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:visibility="invisible" />
 </RelativeLayout>

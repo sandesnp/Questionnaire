@@ -1,5 +1,6 @@
 package com.example.questionnaire.fragments.innerfragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -133,6 +134,17 @@ public class fragmentQA extends DialogFragment {
             }
         });
         return view;
-
     }
+
+    //DialogFragment  on back pressed
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return new Dialog(getActivity(), getTheme()) {
+            @Override
+            public void onBackPressed() {
+                Toast.makeText(getContext(), "Please use the close button.", Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
 }
