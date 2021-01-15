@@ -21,8 +21,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tvcorrect_answers_default"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="75dp"
-        android:background="@color/almost_white" />
+        android:background="@color/darkPurple" />
 
     <LinearLayout
         android:layout_width="match_parent"

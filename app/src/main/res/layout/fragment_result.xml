@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Total Points"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
             android:text="@string/default_question"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tvtotalattempt"
@@ -58,7 +58,7 @@
             android:layout_below="@+id/tvtotalpoint"
             android:layout_margin="20dp"
             android:text="Attempts Made"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -70,7 +70,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
             android:text="@string/default_question"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tvtotalwrong"
@@ -79,7 +79,7 @@
             android:layout_below="@id/tvtotalattempt"
             android:layout_margin="20dp"
             android:text="Total Wrong"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -91,7 +91,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
             android:text="@string/default_question"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tvtotalright"
@@ -100,7 +100,7 @@
             android:layout_below="@id/tvtotalwrong"
             android:layout_margin="20dp"
             android:text="Total Correct"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -112,7 +112,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
             android:text="@string/default_question"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tvtotalfinalpoint"
@@ -121,7 +121,7 @@
             android:layout_below="@id/tvtotalright"
             android:layout_margin="20dp"
             android:text="Total Final Points"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
             android:text="@string/default_question"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <View
             android:id="@+id/viewbelowtvtotalans"
@@ -152,7 +152,7 @@
             android:backgroundTint="@color/white"
             android:text="Close"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:theme="@style/Theme.MaterialComponents" />
 
         <com.google.android.material.button.MaterialButton
@@ -164,7 +164,7 @@
             android:backgroundTint="@color/white"
             android:text="Check Answers"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:theme="@style/Theme.MaterialComponents" />
     </RelativeLayout>
     </LinearLayout>

@@ -90,14 +90,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             case "thequestion":
                 questions question = listTheQuestion.get(position);
 
-
-                ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
-                        .toBuilder()
-                        .setAllCorners(new CutCornerTreatment()).setAllCornerSizes(50) //top right edge cut
-                        .build();
-
-                MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
-                ViewCompat.setBackground(holder.linearLayout_theQuestion, shapeDrawable);
+//
+//                ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
+//                        .toBuilder()
+//                        .setAllCorners(new CutCornerTreatment()).setAllCornerSizes(50) //top right edge cut
+//                        .build();
+//
+//                MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+//                ViewCompat.setBackground(holder.linearLayout_theQuestion, shapeDrawable);
                 global.questions = listTheQuestion;
                 Map<String, String> Question_Set = new HashMap<>();
                 for (objectives obj : question.getObjectives()) {

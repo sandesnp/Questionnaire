@@ -6,23 +6,22 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="5dp"
-    android:background="@color/white"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/curve_no_border_thequestion"
     android:padding="10dp">
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/curve_no_border_thequestion"
+        android:layout_marginTop="105dp"
+
         android:orientation="vertical"
         android:paddingTop="50dp"
         android:paddingBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <RadioGroup
             android:id="@+id/rganswer"
@@ -35,12 +34,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/radio_selector"
                 android:button="@color/white"
                 android:drawableEnd="@drawable/radio_checked_image"
                 android:elevation="4dp"
                 android:gravity="center"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/default_Answer"
                 android:textColor="@drawable/radio_text_color" />
 
@@ -50,42 +52,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/radio_selector"
                 android:button="@color/white"
                 android:drawableEnd="@drawable/radio_checked_image"
                 android:elevation="4dp"
                 android:gravity="center"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/default_Answer"
                 android:textColor="@drawable/radio_text_color" />
-
 
             <RadioButton
                 android:id="@+id/rbanswerC"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/radio_selector"
                 android:button="@color/white"
                 android:drawableEnd="@drawable/radio_checked_image"
                 android:elevation="4dp"
                 android:gravity="center"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/default_Answer"
                 android:textColor="@drawable/radio_text_color" />
-
 
             <RadioButton
                 android:id="@+id/rbanswerD"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
                 android:background="@drawable/radio_selector"
                 android:button="@color/white"
                 android:drawableEnd="@drawable/radio_checked_image"
                 android:elevation="4dp"
                 android:gravity="center"
+                android:paddingStart="1dp"
+                android:paddingEnd="20dp"
                 android:text="@string/default_Answer"
                 android:textColor="@drawable/radio_text_color" />
         </RadioGroup>
@@ -95,11 +104,11 @@
     <LinearLayout
         android:id="@+id/linearlayout_thequestion"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="150dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="6dp"
-        android:background="#252C4A"
+        android:background="@color/darkPurple"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -111,7 +120,7 @@
             android:gravity="center"
             android:text="@string/default_question"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
