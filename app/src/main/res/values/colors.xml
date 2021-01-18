@@ -20,4 +20,5 @@
     <color name="uncheckedColor">#aefff7</color>
     <color name="colorPrimary">#6200EE</color>
     <color name="darkPurple">#252C4A</color>
+    <color name="barelyYellow">#dad3b5</color>
 </resources>
